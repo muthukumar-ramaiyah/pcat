@@ -1,5 +1,3 @@
-import os
-import sys
 import pytest
 from jsonschema import validate
 
@@ -59,3 +57,10 @@ def test_create_user():
     assert response['job'] == "leader"
     assert 'id' in response
     assert 'createdAt' in response
+
+def test_update_user():
+    user_id = 2
+    response = ReqResClient.update_user(user_id, "morpheus", "zion resident")
+    assert response['name'] == "morpheus"
+    assert response['job'] == "zion resident"
+    assert 'updatedAt' in response
